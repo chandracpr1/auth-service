@@ -1,5 +1,7 @@
 package com.chatapp.auth_service.controller;
 
+import com.chatapp.auth_service.dto.LoginRequest;
+import com.chatapp.auth_service.dto.LoginResponse;
 import com.chatapp.auth_service.dto.RegisterRequest;
 import com.chatapp.auth_service.dto.RegisterResponse;
 import com.chatapp.auth_service.service.UserService;
@@ -25,5 +27,11 @@ public class AuthController {
     {
         RegisterResponse response=userService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request)
+    {
+        return ResponseEntity.ok(userService.login(request));
     }
 }
